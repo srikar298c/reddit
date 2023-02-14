@@ -19,16 +19,16 @@ export const Button :ComponentStyleConfig={
       },
       variants: {
         solid: {
-          color: "white",
-          bg: "blue.500",
+          color: "black",
+          bg: "purple.500",
           _hover: {
             bg: "blue.400",
           },
         },
         outline: {
-          color: "blue.500",
+          color: "black.500",
           border: "1px solid",
-          borderColor: "blue.500",
+          borderColor: "purple.500",
         },
         oauth: {
           height: "34px",

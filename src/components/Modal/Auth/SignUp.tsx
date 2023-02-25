@@ -8,7 +8,7 @@ import {auth} from "../../../firebase/clientApp"
 const SignUp: React.FC = () => {
 
     const setAuthModalState = useSetRecoilState(authModalState)
-    const [singupForm, setSignupForm] = useState({
+    const [signUpForm, setSignupForm] = useState({
         email: "",
         password: "",
         confirmPassword: ""
@@ -21,7 +21,7 @@ const SignUp: React.FC = () => {
       ] = useCreateUserWithEmailAndPassword(auth);
     //Firebase logic
     const onSubmit = () => { 
-        useCreateUserWithEmailAndPassword(signUpForm.email, singupForm.password)
+        useCreateUserWithEmailAndPassword(signUpForm.email, signUpForm.password)
     };
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         //update form state

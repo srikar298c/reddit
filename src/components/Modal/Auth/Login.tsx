@@ -1,18 +1,22 @@
+import { authModalState } from '@/atoms/authModalAtom';
 import { Button, Flex, Input, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 
 type LoginProps = {
 
 };
 
 const Login: React.FC<LoginProps> = () => {
+    const setAuthModalState = useSetRecoilState(authModalState)
     const [LoginForm, setLoginForm] = useState({
         email: "",
         password: "",
     })
+    //Firebase logic
     const onSubmit = () => { };
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        //
+        //update form state
         setLoginForm((prev) => ({
             ...prev,
             [event.target.name]: event.target.value,
@@ -72,7 +76,11 @@ const Login: React.FC<LoginProps> = () => {
                         <Text
                         color={"blue.500"}
                         fontWeight ="700"
-                        
+                        cursor={'pointer'}
+                        onClick ={() => setAuthModalState(prev =>({
+                            ...prev,
+                            view:'signup'
+                        }))}
                         >SIGN UP</Text>
                 </Flex>
 

@@ -1,10 +1,5 @@
-
-import { Inter } from '@next/font/google'
-
-
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
-  return <h1>Hello Srikar</h1>
-  
-}
+import type {NextPage} from "next";
+const Home: NextPage =() =>{
+    return <div>Hello</div>
+};
+export default Home;

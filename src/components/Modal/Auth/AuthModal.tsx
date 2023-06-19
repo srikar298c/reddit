@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDisclosure} from "@chakra-ui/hooks";
 import {
-    Button,
+    Button, Flex,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import {useRecoilState} from "recoil";
 import {authModalState} from "@/atoms/authModalAtom";
+import AuthInputs from "@/components/Modal/Auth/AuthInputs";
 
 function AuthModal() {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -25,26 +26,32 @@ function AuthModal() {
     }
     return (
         <>
-            <Button
-                
-                onClick={onOpen}>Open Modal</Button>
+            
             
             <Modal
                 isOpen={modalState.open} onClose={handleclose}>
                 <ModalOverlay/>
                 <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalHeader>{modalState.view === 'login' && "Login"}
+                        {modalState.view === 'signup' && "Sign Up"}
+                        {modalState.view === 'resetPassword' && "Reset Password"}
+                    </ModalHeader>
                     <ModalCloseButton/>
-                    <ModalBody>
-                    
+                    <ModalBody display = "flex"
+                    flexDirection = "column"
+                    alignItems = "center"
+                    justifyContent={"center"}>
+                        <Flex
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="center"
+                            width="70%"
+                        >
+                            <AuthInputs/>
+                        </Flex>
                     </ModalBody>
                     
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Button variant='ghost'>Secondary Action</Button>
-                    </ModalFooter>
+                    
                 </ModalContent>
             </Modal>
         </>

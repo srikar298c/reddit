@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "@/components/Navbar/Navbar";
 
-const Layout:React.FC   =({children: children}) =>
+const Layout:React.FC   =({ children }) =>
     (
         <>
             <Navbar/>
-            <main>{children}</main>
+            { children }
         </>
     )
 export default Layout;

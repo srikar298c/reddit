@@ -8,20 +8,30 @@ const Login: React.FC<LoginProps> =() =>{
         email: "",
         password: "",
     });
+    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {}
+    const onChange = ({
+                          target: { name, value },
+                      }: React.ChangeEvent<HTMLInputElement>) => {
+        setForm((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+    
     return(
-        <form>
+        <form onSubmit={onSubmit}>
             <Input
                 name="email"
                 placeholder="email"
                 type="text"
                 mb={2}
-                // onChange={onChange}
+                 onChange={onChange}
             />
             <Input
                 name="password"
                 placeholder="password"
                 type="password"
-                // onChange={onChange}
+                 onChange={onChange}
             />
         </form>
     )

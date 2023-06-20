@@ -1,12 +1,10 @@
 import React from 'react';
-import {useDisclosure} from "@chakra-ui/hooks";
 import {
-    Button, Flex,
+    Flex,
     Modal,
     ModalBody,
     ModalCloseButton,
     ModalContent,
-    ModalFooter,
     ModalHeader,
     ModalOverlay
 } from "@chakra-ui/react";
@@ -15,7 +13,7 @@ import {authModalState} from "@/atoms/authModalAtom";
 import AuthInputs from "@/components/Modal/Auth/AuthInputs";
 
 function AuthModal() {
-    const {isOpen, onOpen, onClose} = useDisclosure();
+
     const [modalState,setModalState] =useRecoilState(authModalState)
     const handleclose =() =>{
         setModalState(prev =>(

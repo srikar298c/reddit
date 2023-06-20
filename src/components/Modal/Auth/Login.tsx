@@ -8,7 +8,12 @@ const Login: React.FC<LoginProps> =() =>{
         email: "",
         password: "",
     });
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {}
+    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (formError) setFormError("");
+        if (!form.email.includes("@")) {
+            return setFormError("Please enter a valid email");
+    }
     const onChange = ({
                           target: { name, value },
                       }: React.ChangeEvent<HTMLInputElement>) => {

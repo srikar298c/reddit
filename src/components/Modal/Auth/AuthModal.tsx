@@ -6,7 +6,9 @@ import {
     ModalCloseButton,
     ModalContent,
     ModalHeader,
-    ModalOverlay
+    ModalOverlay,
+    Text
+    
 } from "@chakra-ui/react";
 import {useRecoilState} from "recoil";
 import {authModalState} from "@/atoms/authModalAtom";
@@ -48,6 +50,9 @@ function AuthModal() {
                             width="70%"
                         >
                             <OAuthButtons/>
+                            <Text color ="gray.500" fontWeight={"700"}>
+                                OR
+                            </Text>
                             <AuthInputs/>
                         </Flex>
                     </ModalBody>

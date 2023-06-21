@@ -21,7 +21,7 @@ export const theme = extendTheme({
                 }
             })
     },
-    componets:{
+    components:{
             
     }
     })

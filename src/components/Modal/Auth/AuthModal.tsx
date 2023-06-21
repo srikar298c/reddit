@@ -11,14 +11,16 @@ import {
 import {useRecoilState} from "recoil";
 import {authModalState} from "@/atoms/authModalAtom";
 import AuthInputs from "@/components/Modal/Auth/AuthInputs";
+import OAuthButtons from "@/components/Modal/Auth/OAuthButtons";
 
 function AuthModal() {
 
     const [modalState,setModalState] =useRecoilState(authModalState)
-    const handleclose =() =>{
+    const handleClose =() =>{
         setModalState(prev =>(
             {
                 ...prev,
+                open: false,
             }
         ))
     }
@@ -27,10 +29,10 @@ function AuthModal() {
             
             
             <Modal
-                isOpen={modalState.open} onClose={handleclose}>
+                isOpen={modalState.open} onClose={handleClose}>
                 <ModalOverlay/>
                 <ModalContent>
-                    <ModalHeader>{modalState.view === 'login' && "Login"}
+                    <ModalHeader textAlign={"center"}>{modalState.view === 'login' && "Login"}
                         {modalState.view === 'signup' && "Sign Up"}
                         {modalState.view === 'resetPassword' && "Reset Password"}
                     </ModalHeader>
@@ -45,6 +47,7 @@ function AuthModal() {
                             justifyContent="center"
                             width="70%"
                         >
+                            <OAuthButtons/>
                             <AuthInputs/>
                         </Flex>
                     </ModalBody>

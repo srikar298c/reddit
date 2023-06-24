@@ -1,5 +1,8 @@
 import React from "react";
 import {Button, Flex, Image, Text } from "@chakra-ui/react";
+import {useSignInWithGoogle} from 'react-firebase-hooks/auth'
+import {auth} from "@/firebase/clientApp";
+
 const OAuthButtons: React.FC =()=>{
     return(
         <Flex direction="column" mb={4} width="100%">

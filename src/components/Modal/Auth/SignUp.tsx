@@ -5,6 +5,7 @@ import InputItem from "@/components/Layout/InputItem";
 import {Button, Flex, Text} from "@chakra-ui/react";
 import {useCreateUserWithEmailAndPassword} from "react-firebase-hooks/auth";
 import {auth} from '@/firebase/clientApp'
+import {FIREBASE_ERRORS} from "@/firebase/error";
 
 const SignUp:React.FC =() => {
     
@@ -63,11 +64,12 @@ const SignUp:React.FC =() => {
                 type="password"
                 onChange={onChange}
             />
-            {error && <Text
+             <Text
                 align={"center"}
                 color={"red"}
                 fontSize ="10pt"
-            >{error}</Text>}
+            >{error || FIREBASE_ERRORS[userError?.message as keyof typeof
+                FIREBASE_ERRORS]}</Text>
             <Button
                 width="100%"
                 height="36px"

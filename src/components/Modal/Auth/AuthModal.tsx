@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Flex,
     Modal,
@@ -14,10 +14,13 @@ import {useRecoilState} from "recoil";
 import {authModalState} from "@/atoms/authModalAtom";
 import AuthInputs from "@/components/Modal/Auth/AuthInputs";
 import OAuthButtons from "@/components/Modal/Auth/OAuthButtons";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "@/firebase/clientApp";
 
 function AuthModal() {
 
     const [modalState,setModalState] =useRecoilState(authModalState)
+    const [user,loading, error] = useAuthState(auth);
     const handleClose =() =>{
         setModalState(prev =>(
             {
@@ -26,6 +29,9 @@ function AuthModal() {
             }
         ))
     }
+    useEffect(() =>{
+        if (user) handleClose();
+    },[user])
     return (
         <>
             

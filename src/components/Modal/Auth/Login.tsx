@@ -10,7 +10,7 @@ import {FIREBASE_ERRORS} from "@/firebase/error";
 type LoginProps = {
 
 };
-const [signInWithEmailAndPassword,user,loading, error ] = useSignInWithEmailAndPassword(auth)
+
 const Login: React.FC<LoginProps> = () => {
     const setAuthModalState = useSetRecoilState(authModalState);
     const [loginForm, setLoginForm] = useState({
@@ -18,7 +18,7 @@ const Login: React.FC<LoginProps> = () => {
         password: "",
     });
     
-    
+    const [signInWithEmailAndPassword,user,loading, error ] = useSignInWithEmailAndPassword(auth)
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         

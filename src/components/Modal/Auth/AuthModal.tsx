@@ -11,27 +11,34 @@ import {
     
 } from "@chakra-ui/react";
 import {useRecoilState} from "recoil";
-import {authModalState} from "@/atoms/authModalAtom";
+import {authModalState, ModalView} from "@/atoms/authModalAtom";
 import AuthInputs from "@/components/Modal/Auth/AuthInputs";
 import OAuthButtons from "@/components/Modal/Auth/OAuthButtons";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/firebase/clientApp";
+import ResetPassword from "@/components/Modal/Auth/ResetPassword";
 
 function AuthModal() {
-
-    const [modalState,setModalState] =useRecoilState(authModalState)
-    const [user,loading, error] = useAuthState(auth);
-    const handleClose =() =>{
-        setModalState(prev =>(
+    
+    const [modalState, setModalState] = useRecoilState(authModalState)
+    const [user, loading, error] = useAuthState(auth);
+    const handleClose = () => {
+        setModalState(prev => (
             {
                 ...prev,
                 open: false,
             }
         ))
     }
-    useEffect(() =>{
+    const toggleView = (view: string) => {
+        setModalState({
+            ...modalState,
+            view: view as typeof modalState.view,
+        });
+    };
+    useEffect(() => {
         if (user) handleClose();
-    },[user])
+    }, [user])
     return (
         <>
             
@@ -45,21 +52,26 @@ function AuthModal() {
                         {modalState.view === 'resetPassword' && "Reset Password"}
                     </ModalHeader>
                     <ModalCloseButton/>
-                    <ModalBody display = "flex"
-                    flexDirection = "column"
-                    alignItems = "center"
-                    justifyContent={"center"}>
+                    <ModalBody display="flex"
+                               flexDirection="column"
+                               alignItems="center"
+                               justifyContent={"center"}>
                         <Flex
                             direction="column"
                             alignItems="center"
                             justifyContent="center"
                             width="70%"
                         >
-                            <OAuthButtons/>
-                            <Text color ="gray.500" fontWeight={"700"}>
-                                OR
-                            </Text>
-                            <AuthInputs/>
+                            {modalState.view === 'login' || modalState.view === 'signup' ? (
+                                <>
+                                    <OAuthButtons/>
+                                    <Text color="gray.500" fontWeight={"700"}>
+                                        OR
+                                    </Text>
+                                    <AuthInputs/>
+                                </>
+                            ) : (<ResetPassword />)}
+                           
                         </Flex>
                     </ModalBody>
                     

@@ -11,12 +11,12 @@ const Navbar: React.FC =() =>{
           <Flex align={"center"}>
               <Image src={"/images/redditFace.svg"} height="30px"/>
               <Image src={"/images/redditText.svg"} height ="46px" display={{base: "none", md:"unset"} }/>
-              <Text display={{base: "none", md:"unset"}}>Built by Srikar</Text>
+              
           </Flex>
             <SearchInput/>
            {/*/!* <Directory/>*/}
             <RightContent user={user}/>
-        
+        gh
         </Flex>
         
     )

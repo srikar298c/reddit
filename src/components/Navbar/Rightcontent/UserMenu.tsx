@@ -1,20 +1,23 @@
 import React from "react";
-
+import { signOut } from "firebase/auth";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import {auth} from "@/firebase/clientApp"
 import {
     Box,
-    Button, Flex,Icon,
+    Flex, Icon,
     Menu,
     Text,
     MenuButton,
     MenuItem,
-    MenuList,
+    MenuList, MenuDivider,
     
 } from "@chakra-ui/react";
 import {User} from "firebase/auth";
 import { FaRedditSquare } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { IoSparkles } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+import { MdOutlineLogin } from "react-icons/md";
 type UserMenuProps={
     user?: User | null;
 };
@@ -61,11 +64,28 @@ const UserMenu: React.FC<UserMenuProps>=({user}) => {
                 </Flex>
             </MenuButton>
             <MenuList>
-                <MenuItem>Download</MenuItem>
-                <MenuItem>Create a Copy</MenuItem>
-                <MenuItem>Mark as Draft</MenuItem>
-                <MenuItem>Delete</MenuItem>
-                <MenuItem>Attend a Workshop</MenuItem>
+                <MenuItem
+                    fontSize="10pt"
+                    fontWeight={700}
+                    _hover={{ bg: "blue.500", color: "white" }}
+                >
+                    <Flex alignItems="center">
+                        <Icon fontSize={20} mr={2} as={CgProfile} />
+                        Profile
+                    </Flex>
+                </MenuItem>
+                <MenuDivider />
+                <MenuItem
+                    fontSize="10pt"
+                    fontWeight={700}
+                    _hover={{ bg: "blue.500", color: "white" }}
+                     onClick={() => signOut(auth)}
+                >
+                    <Flex alignItems="center">
+                        <Icon fontSize={20} mr={2} as={MdOutlineLogin} />
+                        Log Out
+                    </Flex>
+                </MenuItem>
             </MenuList>
         </Menu>
     )

@@ -10,15 +10,15 @@ import {
     
 } from "@chakra-ui/react";
 import {TiHome} from "react-icons/ti";
-import {User} from "firebase/auth";
 import {useSetRecoilState} from "recoil";
 import {authModalState} from "@/atoms/authModalAtom";
-type UserMenuProps={
-    user?: User | null;
-};
+// import {User} from "firebase/auth";
+// type UserMenuProps={
+//     user?: User | null;
+// };
 
 
-const UserMenu: React.FC<UserMenuProps>=() => {
+const UserMenu: React.FC=() => {
     const setAuthModalState = useSetRecoilState(authModalState)
     return(
         <Menu>
@@ -31,7 +31,7 @@ const UserMenu: React.FC<UserMenuProps>=() => {
             >
                 <Flex alignItems="center">
                     <Flex alignItems="center">
-                        fontSize="10pt"
+                       
                     <Icon fontSize={24} mr={{base:1, md: 2 }} as ={TiHome}/>
                         
                         <Flex display={{ base:"none", lg:"flex"}}><Text fontWeight={600}>Home</Text></Flex>
